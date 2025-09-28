@@ -2,11 +2,11 @@
 
 ## 🎯 Objetivo
 Crear un template listo para producción con:
-- Frontend en React (Vite + TS).
+- Frontend en React (Vite + TS) con Tailwind CSS.
 - Backend en FastAPI (Python).
 - Base de datos con Firestore.
 - Autenticación con Firebase.
-- Infraestructura en Google Cloud (Cloud Run, Build, Secrets, Storage).
+- Infraestructura en Google Cloud (Cloud Run, Artifact Registry, Secrets, Storage).
 - CI/CD con GitHub Actions.
 - Configuración como código con Terraform.
 
@@ -20,6 +20,7 @@ my-starter-kit/
 ├── backend/         # FastAPI + Docker
 ├── infra/           # Terraform + GitHub Actions
 ├── firebase/        # Hosting + Firestore
+├── COMMANDS.md      # Comandos útiles
 └── PLAN.md          # Planificación (este archivo)
 ```
 
@@ -28,14 +29,15 @@ my-starter-kit/
 ## 🛠 Backend (FastAPI)
 - API básica con un endpoint raíz (`/`).
 - Integración con Google Secret Manager.
-- Dockerfile optimizado (multistage build opcional).
+- Dockerfile optimizado (multistage build).
 - Despliegue en Cloud Run mediante GitHub Actions.
 
 ---
 
 ## 🎨 Frontend (React + Vite)
+- Configuración con Tailwind CSS.
 - Configuración de Firebase (Auth + Firestore).
-- Ejemplo de login con email/password.
+- Ejemplo de componente base con Tailwind.
 - Configuración para `firebase deploy`.
 - Variables en `.env` para Firebase.
 
@@ -43,26 +45,26 @@ my-starter-kit/
 
 ## 🔑 Autenticación (Firebase Auth)
 - Configuración de Firebase en `frontend/src/firebase.ts`.
-- Ejemplo de login con `signInWithEmailAndPassword`.
+- Ejemplo de login con `signInWithEmailAndPassword` (pendiente de implementar UI).
 - Posibilidad de extender a Google Sign-In.
 
 ---
 
 ## ☁️ Infraestructura (Terraform + GCP)
-1. Crear bucket de almacenamiento (para archivos estáticos).
-2. Crear secretos en Secret Manager (ej. `API_KEY`).
-3. Crear servicio en Cloud Run (backend).
-4. Configurar IAM (Cloud Run con acceso a secretos).
-5. (Opcional) Configurar estado remoto de Terraform en bucket.
+1. Crear bucket de almacenamiento.
+2. Crear secretos en Secret Manager.
+3. Crear servicio en Cloud Run.
+4. Crear repositorio en Artifact Registry.
+5. Configurar IAM (Cloud Run con acceso a secretos).
 
 ---
 
 ## 🤖 CI/CD (GitHub Actions)
 - Workflow para backend:
   - Construir imagen Docker.
-  - Push a Google Container Registry (GCR).
+  - Push a Google Artifact Registry.
   - Desplegar a Cloud Run.
-- Workflow para frontend:
+- Workflow para frontend (pendiente):
   - Build con Vite.
   - Deploy a Firebase Hosting.
 
@@ -71,26 +73,22 @@ my-starter-kit/
 ## 🚀 Flujo de uso del template
 1. Clonar repo.
 2. Copiar `.env.example` → `.env` en frontend y backend.
-3. Inicializar Terraform:
-   ```bash
-   cd infra/terraform
-   terraform init
-   terraform apply -var="project_id=XXX" -var="api_key=YYY"
-   ```
-4. Configurar secretos en GitHub (`GCP_CREDENTIALS`, `GCP_PROJECT_ID`).
-5. Push a `main` → GitHub Actions despliega automáticamente.
-6. `firebase deploy` para frontend.
+3. Inicializar Terraform y aplicar cambios.
+4. Configurar secretos en GitHub (`GCP_CREDENTIALS`, `GCP_PROJECT_ID`, etc.).
+5. Push a `main` → GitHub Actions despliega automáticamente el backend.
+6. `firebase deploy` para desplegar el frontend.
 
 ---
 
 ## 📅 Roadmap de implementación
-- [ ] Crear backend base con FastAPI.
-- [ ] Crear frontend base con React+Vite+Firebase.
-- [ ] Configurar Docker para backend.
-- [ ] Configurar Terraform (Cloud Run, Secrets, Storage).
-- [ ] Configurar GitHub Actions para backend.
-- [ ] Configurar Firebase Hosting y reglas de Firestore.
-- [ ] Documentación en README.md.
+- [x] Crear backend base con FastAPI.
+- [x] Crear frontend base con React+Vite+Firebase y Tailwind CSS.
+- [x] Configurar Docker para backend.
+- [x] Configurar Terraform (Cloud Run, Secrets, Storage, Artifact Registry).
+- [x] Configurar GitHub Actions para backend.
+- [x] Configurar Firebase Hosting y reglas de Firestore.
+- [x] Crear archivo `COMMANDS.md` con comandos centralizados.
+- [x] Documentación principal en `README.md`.
 - [ ] Publicar como template en GitHub.
 
 ---

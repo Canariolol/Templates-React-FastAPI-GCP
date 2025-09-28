@@ -3,5 +3,5 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def root():
-    return {"message": "API running on Cloud Run 🚀"}
+def read_root():
+    return {"Hello": "World"}
