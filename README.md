@@ -1,44 +1,91 @@
-# Starter Kit (React + FastAPI + GCP + Firebase)
+# 🚀 Starter Kit: React, FastAPI, GCP y Firebase
 
-Este es un template listo para producción que incluye:
-- Frontend: React (Vite), TypeScript, y Tailwind CSS (integrado vía plugin de Vite)
-- Backend: FastAPI (Python)
-- Base de datos: Firestore
-- Autenticación: Firebase
-- Infraestructura: Google Cloud (Cloud Run, Build, Secrets, Storage)
-- CI/CD: GitHub Actions
-- IaC: Terraform
+¡Bienvenido! Este es un template de proyecto listo para producción diseñado para acelerar tu desarrollo. Combina un frontend moderno con React, un backend robusto con FastAPI y un pipeline de despliegue automatizado a Google Cloud Platform y Firebase.
 
-## Primeros Pasos
+** Nota importante: Esta herramienta está en modo de pruebas. Si encuentras errores o posibilidades de mejora, por favor, déjame un mensaje con sugerencias o crea un PR :D **
 
-### Configuración del Backend
+## ✨ Tecnologías Principales
 
-Para levantar el servidor de backend en tu entorno local, sigue estos pasos:
+<p align="center">
+  <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=for-the-badge" alt="React"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white&style=for-the-badge" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white&style=for-the-badge" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=for-the-badge" alt="Python"/>
+  <img src="https://img.shields.io/badge/Google_Cloud-4285F4?logo=googlecloud&logoColor=white&style=for-the-badge" alt="Google Cloud"/>
+  <img src="https://img.shields.io/badge/Terraform-7B42BC?logo=terraform&logoColor=white&style=for-the-badge" alt="Terraform"/>
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black&style=for-the-badge" alt="Firebase"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=for-the-badge" alt="Docker"/>
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white&style=for-the-badge" alt="GitHub Actions"/>
+</p>
 
-1.  Navega a la carpeta `backend`.
-2.  Crea un entorno virtual e instala las dependencias.
-3.  Ejecuta el servidor de desarrollo.
+---
 
-Todos los comandos necesarios están documentados en el archivo [COMMANDS.md](COMMANDS.md).
+## 📋 Requisitos Previos
 
-Una vez ejecutado, la API estará disponible en `http://127.0.0.1:8000`.
-* Puedes probar el endpoint inicial (y los que configures más adelante) entrando a `http://127.0.0.1:8000/docs`.
+Antes de empezar, asegúrate de tener instaladas las siguientes herramientas:
 
+1.  **Node.js** (v18 o superior)
+2.  **Python** (v3.9 o superior)
+3.  **Terraform CLI**
+4.  **Google Cloud CLI (`gcloud`)**
+5.  **Firebase CLI** (`npm install -g firebase-tools`)
 
-### Configuración del Frontend
+---
 
-Para levantar la aplicación de frontend en tu entorno local, sigue estos pasos:
+## 🚀 Guía de Inicio Rápido
 
-1.  Navega a la carpeta `frontend`.
-2.  Copia el archivo `.env.example` a `.env` y añade tus credenciales de Firebase.
-3.  Instala las dependencias.
-4.  Ejecuta el servidor de desarrollo.
+Sigue estos pasos para tener el entorno local y de producción funcionando.
 
-Todos los comandos necesarios están documentados en el archivo [COMMANDS.md](COMMANDS.md).
+### 🏠 Parte 1: Configuración del Entorno Local
 
-### Infraestructura con Terraform
+#### Paso 1: Clonar y Preparar el Repositorio
 
-Este proyecto utiliza Terraform para gestionar la infraestructura en Google Cloud Platform (GCP) como código.
+```bash
+# 1. Clona este repositorio
+git clone <URL_DEL_REPO>
+cd <NOMBRE_DEL_REPO>
+
+# 2. Instala las dependencias del frontend
+cd frontend
+npm install
+
+# 3. Regresa a la raíz e instala las dependencias del backend
+cd ../backend
+# (Opcional pero recomendado) Crea un entorno virtual
+python -m venv venv
+source venv/bin/activate # macOS/Linux
+# .\venv\Scripts\activate # Windows
+
+pip install -r requirements.txt
+```
+
+#### Paso 2: Configurar Variables de Entorno
+
+Necesitas tus credenciales de un proyecto de Firebase para que la aplicación funcione. 
+
+1.  Ve a la carpeta `frontend`.
+2.  Copia el archivo `.env.example` y renómbralo a `.env`.
+3.  Abre tu nuevo archivo `.env` y reemplaza los valores `your-...` con las credenciales reales de tu proyecto de Firebase. Las encontrarás en la configuración de tu proyecto en la consola de Firebase (`Project settings > General > Your apps > SDK setup and configuration`).
+
+```env
+# frontend/.env
+VITE_API_KEY="tu-api-key"
+VITE_AUTH_DOMAIN="tu-auth-domain"
+# ... y el resto de variables
+```
+
+#### Paso 3: Ejecutar los Servidores Locales
+
+¡Es hora de levantar la aplicación! Necesitarás dos terminales.
+
+**Terminal 1: Iniciar el Backend**
+```bash
+# Desde la carpeta 'backend'
+# Asegúrate de tener el entorno virtual activado si lo creaste
+uvicorn app.main:app --reload
+```
+> Verás el servidor corriendo en `http://127.0.0.1:8000`.
+> **💡 Tip:** Puedes explorar la documentación interactiva de tu API en `http://127.0.0.1:8000/docs`.
 
 **Terminal 2: Iniciar el Frontend**
 ```bash
@@ -57,7 +104,7 @@ Abre tu navegador en `http://localhost:5173`.
 
 ---
 
-### Parte 2: Despliegue en la Nube
+### ☁️ Parte 2: Despliegue en la Nube
 
 Ahora vamos a desplegar la aplicación a un entorno de producción real.
 
