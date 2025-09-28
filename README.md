@@ -1,84 +1,42 @@
-# 🚀 Starter Kit: React, FastAPI, GCP y Firebase
+# Starter Kit (React + FastAPI + GCP + Firebase)
 
-¡Bienvenido! Este es un template de proyecto listo para producción diseñado para acelerar tu desarrollo. Combina un frontend moderno con React, un backend robusto con FastAPI y un pipeline de despliegue automatizado a Google Cloud Platform y Firebase.
+Este es un template listo para producción que incluye:
+- Frontend: React (Vite), TypeScript, y Tailwind CSS (integrado vía plugin de Vite)
+- Backend: FastAPI (Python)
+- Base de datos: Firestore
+- Autenticación: Firebase
+- Infraestructura: Google Cloud (Cloud Run, Build, Secrets, Storage)
+- CI/CD: GitHub Actions
+- IaC: Terraform
 
-## ✨ Tecnologías Principales
+## Primeros Pasos
 
-- **Frontend**: React (con Vite), TypeScript, y Tailwind CSS (integrado vía plugin de Vite).
-- **Backend**: FastAPI (Python 3.11) y Docker.
-- **Base de Datos y Auth**: Google Firestore y Firebase Authentication.
-- **Infraestructura (IaC)**: Terraform para gestionar los recursos de Google Cloud.
-- **Cloud**: Google Cloud (Cloud Run, Artifact Registry, Secret Manager, Storage).
-- **CI/CD**: GitHub Actions para despliegue continuo del backend.
-- **Hosting**: Firebase Hosting para el frontend.
+### Configuración del Backend
 
----
+Para levantar el servidor de backend en tu entorno local, sigue estos pasos:
 
-## 📋 Requisitos Previos
+1.  Navega a la carpeta `backend`.
+2.  Crea un entorno virtual e instala las dependencias.
+3.  Ejecuta el servidor de desarrollo.
 
-Antes de empezar, asegúrate de tener instaladas las siguientes herramientas:
+Todos los comandos necesarios están documentados en el archivo [COMMANDS.md](COMMANDS.md).
 
-1.  **Node.js** (v18 o superior)
-2.  **Python** (v3.9 o superior)
-3.  **Terraform CLI**
-4.  **Google Cloud CLI (`gcloud`)**
-5.  **Firebase CLI** (`npm install -g firebase-tools`)
+Una vez ejecutado, la API estará disponible en `http://127.0.0.1:8000`.
 
----
+### Configuración del Frontend
 
-## 🚀 Guía de Inicio Rápido
+Para levantar la aplicación de frontend en tu entorno local, sigue estos pasos:
 
-Sigue estos pasos para tener el entorno local y de producción funcionando.
+1.  Navega a la carpeta `frontend`.
+2.  Copia el archivo `.env.example` a `.env` y añade tus credenciales de Firebase.
+3.  Instala las dependencias.
+4.  Ejecuta el servidor de desarrollo.
 
-### Parte 1: Configuración del Entorno Local
+Todos los comandos necesarios están documentados en el archivo [COMMANDS.md](COMMANDS.md).
 
-#### Paso 1: Clonar y Preparar el Repositorio
+### Infraestructura con Terraform
 
-```bash
-# 1. Clona este repositorio
-git clone <https://github.com/Canariolol/Templates-React-FastAPI-GCP>
-cd <Templates-React-FastAPI-GCP>
-
-# 2. Instala las dependencias del frontend
-cd frontend
-npm install
-
-# 3. Regresa a la raíz e instala las dependencias del backend
-cd ../backend
-# (Opcional pero recomendado) Crea un entorno virtual
-python -m venv venv
-source venv/bin/activate # macOS/Linux
-# .\venv\Scripts\activate # Windows
-
-pip install -r requirements.txt
-```
-
-#### Paso 2: Configurar Variables de Entorno
-
-Necesitas tus credenciales de un proyecto de Firebase para que la aplicación funcione. 
-
-1.  Ve a la carpeta `frontend`.
-2.  Copia el archivo `.env.example` y renómbralo a `.env`.
-3.  Abre tu nuevo archivo `.env` y reemplaza los valores `your-...` con las credenciales reales de tu proyecto de Firebase. Las encontrarás en la configuración de tu proyecto en la consola de Firebase (`Project settings > General > Your apps > SDK setup and configuration`).
-
-```env
-# frontend/.env
-VITE_API_KEY="tu-api-key"
-VITE_AUTH_DOMAIN="tu-auth-domain"
-# ... y el resto de variables
-```
-
-#### Paso 3: Ejecutar los Servidores Locales
-
-¡Es hora de levantar la aplicación! Necesitarás dos terminales.
-
-**Terminal 1: Iniciar el Backend**
-```bash
-# Desde la carpeta 'backend'
-# Asegúrate de tener el entorno virtual activado si lo creaste
-uvicorn app.main:app --reload
-```
-> Verás el servidor corriendo en `http://127.0.0.1:8000`.
+Este proyecto utiliza Terraform para gestionar la infraestructura en Google Cloud Platform (GCP) como código.
 
 **Terminal 2: Iniciar el Frontend**
 ```bash
