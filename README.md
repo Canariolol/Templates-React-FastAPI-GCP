@@ -22,7 +22,9 @@ Para levantar el servidor de backend en tu entorno local, sigue estos pasos:
 Todos los comandos necesarios están documentados en el archivo [COMMANDS.md](COMMANDS.md).
 
 Una vez ejecutado, la API estará disponible en `http://127.0.0.1:8000`.
-Puedes probar el endpoint de prueba (y los que configures más adelante) entrando a `http://127.0.0.1:8000/docs`.
+```bash
+# Puedes probar el endpoint inicial (y los que configures más adelante) entrando a `http://127.0.0.1:8000/docs`.
+```
 
 ### Configuración del Frontend
 
