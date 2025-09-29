@@ -1,0 +1,26 @@
+# IDE y Editores
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Firebase
+.firebase/
+.firebaserc
+
+# Docker
+.dockerignore
+
+# Nota: Los archivos .gitignore específicos de frontend y backend
+# manejarán sus respectivos archivos y dependencias

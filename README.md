@@ -165,11 +165,93 @@ El frontend se despliega en Firebase Hosting.
 
 ---
 
+## 🔧 Configuración de Archivos .gitignore
+
+Los archivos `.gitignore` preconfigurados ignoran:
+
+- 🚫 **Archivos sensibles**: Como claves de API, contraseñas o configuraciones locales
+- 📦 **Dependencias**: Carpetas como `node_modules` o entornos virtuales Python
+- 🗂️ **Archivos generados**: Builds, compilaciones y archivos temporales
+- 💻 **Configuraciones locales**: Archivos específicos de tu máquina o IDE
+
+### 📁 Estructura de .gitignore en este Proyecto
+
+Este template incluye **tres archivos .gitignore**:
+
+#### 1. **`.gitignore` (raíz del proyecto)**
+```bash
+# Archivos globales del proyecto
+.vscode/          # Configuración de VS Code
+.idea/            # Configuración de IntelliJ IDEA
+.DS_Store         # Archivos del sistema macOS
+**/.terraform/    # Archivos de Terraform
+.firebase/        # Archivos de Firebase
+```
+
+**¿Qué hace?**  
+Ignora archivos que son comunes a todo el proyecto, sin importar si son del frontend o backend. Piensa en él como el "guardián general" del repositorio.
+
+#### 2. **`frontend/.gitignore`**
+```bash
+# Archivos específicos del frontend
+node_modules/     # Dependencias de npm/yarn
+dist/            # Build de producción de Vite
+.env.local       # Variables de entorno locales
+.vite/           # Caché de Vite
+*.tsbuildinfo    # Archivos de compilación TypeScript
+```
+
+**¿Qué hace?**  
+Se especializa en ignorar archivos generados por el ecosistema JavaScript/React. Sin este archivo, tu repositorio se llenaría de miles de archivos de dependencias y builds que no necesitan versionarse.
+
+#### 3. **`backend/.gitignore`**
+```bash
+# Archivos específicos del backend
+__pycache__/     # Archivos compilados de Python
+*.pyc            # Archivos bytecode Python
+venv/            # Entorno virtual Python
+*.sqlite         # Bases de datos locales
+.env             # Variables de entorno del backend
+```
+
+**¿Qué hace?**  
+Protege tu repositorio de archivos generados por Python y FastAPI. Los archivos `__pycache__` y `*.pyc` se crean automáticamente al ejecutar código Python y no deben compartirse.
+
+### 💡 ¿Por qué tres archivos en lugar de uno?
+
+En teoría podrías tener solo un archivo .gitignore para tu proyecto. Sin embargo, por orden y limpieza de tu espacio de trabajo, una buena idea es utilizar varios, especialmente para proyectos de mayor tamaño o escalables.
+
+#### Por Ejemplo:
+- **.gitignore raíz**: Es como las reglas generales de uso de una caja de herramientas
+- **frontend/.gitignore**: Reglas específicas para las herramientas de carpintería
+- **backend/.gitignore**: Reglas específicas para las herramientas de mecánica
+
+Esta separación hace que:
+- ✅ Sea más fácil mantener y actualizar cada archivo
+- ✅ Cada .gitignore se enfoque en su tecnología específica
+- ✅ Evitemos conflictos entre reglas de diferentes tecnologías
+- ✅ El proyecto sea más organizado y profesional
+
+### 🔍 ¿Qué pasa si olvido agregar algo al .gitignore?
+
+Si accidentalmente subes un archivo que debería estar en .gitignore:
+1. **Agrega el archivo/patrón al .gitignore correspondiente**
+2. **Ejecuta estos comandos:**
+   ```bash
+   git rm --cached nombre_del_archivo  # Quita del repositorio pero no de tu sistema
+   git commit -m "Remove sensitive file from git tracking" # O el mensaje que desees para identificar el motivo del commit
+   ```
+
+> **⚠️ Importante**: Si subiste información sensible (como claves de API), considera que ya está expuesta y deberías rotar esas claves inmediatamente.
+
+---
+
 ## 🔧 Solución de Problemas Comunes
 
 - **Error: `(auth/invalid-api-key)` en el navegador:**
   - **Causa:** Las variables de entorno en `frontend/.env` son incorrectas o no se han configurado.
   - **Solución:** Verifica que copiaste las credenciales correctas desde la consola de Firebase a tu archivo `.env`.
+  - **Esto ocurrirá inevitablemente si decides desplegar el proyecto sin antes configurar tus claves**
 
 - **Errores de Vite o Tailwind CSS al iniciar:**
   - **Causa:** La caché de Vite puede haberse quedado corrupta.
